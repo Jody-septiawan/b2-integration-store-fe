@@ -5,11 +5,11 @@ import { MdOutlineFastfood } from "react-icons/md";
 
 export const Navbar = () => {
   return (
-    <div className="bg-base-100 shadow-sm">
+    <div className="bg-base-100 shadow-sm sticky top-0 z-50">
       <div className="navbar bg-transparent container mx-auto">
         <div className="flex-1">
           <Link href="/" className="text-xl flex items-center gap-x-4">
-            <MdOutlineFastfood size={30} className="text-neutral" />{" "}
+            <MdOutlineFastfood size={30} className="text-base-content" />{" "}
             <p>
               <span className="text-secondary">Cemal</span>
               <span className="text-primary">Cemil</span>
@@ -27,7 +27,7 @@ export const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="dropdown-content menu bg-base-100 rounded-box z-[1] w-28 p-2 shadow"
+              className="dropdown-content menu bg-base-300 border-[1px] border-neutral rounded-box z-[1] w-28 p-2 shadow"
             >
               <li>
                 <Link href="/login">Login</Link>

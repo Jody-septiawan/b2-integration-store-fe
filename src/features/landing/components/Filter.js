@@ -1,11 +1,17 @@
 import React from "react";
 
-export const Filter = ({ title }) => {
+export const Filter = ({ title, onChange, value }) => {
   return (
     <div className="flex items-center justify-between">
       <h3>{title}</h3>
       <label className="input input-bordered flex items-center input-sm gap-2">
-        <input type="text" className="grow" placeholder="Search" />
+        <input
+          type="text"
+          className="grow"
+          placeholder="Search"
+          onChange={onChange}
+          value={value ?? ""}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
