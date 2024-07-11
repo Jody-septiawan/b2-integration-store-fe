@@ -1,12 +1,14 @@
 import { formatRupiah } from "@/helpers/formatRupiah";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FaRegImage } from "react-icons/fa6";
 
 export const FoodCard = ({ data, className }) => {
   return (
-    <div
-      className={`${className} card rounded-lg bg-base-100 card-shadow border border-neutral flex flex-col overflow-hidden`}
+    <Link
+      href={`/foods/${data.id}`}
+      className={`${className} cursor-pointer card rounded-lg bg-base-100 card-shadow border border-neutral flex flex-col overflow-hidden`}
     >
       <div className="h-56 bg-base-300 flex justify-center items-center text-base-100">
         {!data.image && <FaRegImage className="text-6xl" />}
@@ -24,6 +26,6 @@ export const FoodCard = ({ data, className }) => {
         <p className="text-xs truncate">{data.title}</p>
         <p className="text-sm font-semibold">{formatRupiah(data.price)}</p>
       </div>
-    </div>
+    </Link>
   );
 };
