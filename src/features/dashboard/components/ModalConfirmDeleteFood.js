@@ -1,6 +1,9 @@
 import React from "react";
+import { useDeleteFood } from "../hooks/useDeleteFood";
 
-export const ModalConfirmDeleteFood = ({ item }) => {
+export const ModalConfirmDeleteFood = ({ item, handleRefetch }) => {
+  const { handleDelete } = useDeleteFood({ item, handleRefetch });
+
   return (
     <dialog id={`${item.id}-food-modal-delete`} className="modal">
       <div className="modal-box">
@@ -19,14 +22,7 @@ export const ModalConfirmDeleteFood = ({ item }) => {
           >
             Cancel
           </button>
-          <button
-            className="btn btn-sm btn-primary"
-            onClick={() => {
-              document
-                .getElementById(`${item.id}-food-modal-delete-close`)
-                .click();
-            }}
-          >
+          <button className="btn btn-sm btn-primary" onClick={handleDelete}>
             Yes
           </button>
         </div>

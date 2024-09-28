@@ -1,25 +1,50 @@
 import React from "react";
+import { useAddFood } from "../hooks/useAddFood";
+import { SingleLineText } from "@/components/fields/SingleLineText";
+import { FileUpload } from "@/components/fields/FileUpload";
 
-export const ModalAddFood = () => {
+export const ModalAddFood = ({ handleRefetch }) => {
+  const {
+    errors,
+    handleOnChange,
+    handleSubmit,
+    form,
+    handleFileChange,
+    error,
+    file,
+  } = useAddFood({
+    handleRefetch,
+  });
+
   return (
     <dialog id={`modal-dashboard-add-food`} className="modal">
       <div className="modal-box">
         <div className="">
           <h2 className="text-center text-xl font-bold">Add Food</h2>
           <div className="mt-8 flex flex-col gap-y-4">
-            <input
-              type="file"
-              className="file-input file-input-bordered w-full"
+            <FileUpload
+              name="image"
+              label="Image"
+              onChange={handleFileChange}
+              value={file}
+              error={error}
             />
-            <input
-              type="text"
-              placeholder="Title"
-              className="input input-bordered w-full"
+            <SingleLineText
+              name="title"
+              label="Title"
+              placeholder="Input Title Food ..."
+              onChange={handleOnChange}
+              value={form?.title}
+              error={errors.title}
             />
-            <input
+            <SingleLineText
               type="number"
-              placeholder="Price"
-              className="input input-bordered w-full"
+              name="price"
+              label="Price"
+              placeholder="Input Price Food ..."
+              onChange={handleOnChange}
+              value={form?.price}
+              error={errors.price}
             />
           </div>
         </div>
@@ -32,12 +57,7 @@ export const ModalAddFood = () => {
           >
             Cancel
           </button>
-          <button
-            className="btn btn-sm btn-primary"
-            onClick={() => {
-              document.getElementById(`modal-dashboard-add-food-close`).click();
-            }}
-          >
+          <button className="btn btn-sm btn-primary" onClick={handleSubmit}>
             Submit
           </button>
         </div>

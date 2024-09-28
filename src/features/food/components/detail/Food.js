@@ -1,4 +1,5 @@
 import { foods } from "@/dummy/food";
+import { useGetFoodById } from "@/features/dashboard/hooks/useGetFoodById";
 import { formatRupiah } from "@/helpers/formatRupiah";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -6,16 +7,7 @@ import React from "react";
 import { FaRegImage } from "react-icons/fa";
 
 export const Food = () => {
-  const router = useRouter();
-  const { id } = router.query;
-
-  const food = React.useMemo(() => {
-    if (!id) return null;
-
-    return foods.find((item) => item.id === parseInt(id));
-  }, [id]);
-
-  console.log(food);
+  const { food } = useGetFoodById();
 
   if (!food) return <></>;
 

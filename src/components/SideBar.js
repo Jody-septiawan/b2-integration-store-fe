@@ -3,11 +3,14 @@ import React from "react";
 import { MdOutlineFastfood } from "react-icons/md";
 import { FaTableList } from "react-icons/fa6";
 import { useRouter } from "next/router";
+import { useUserStore } from "@/stores/useUserStore";
 
 export const SideBar = () => {
+  const { user } = useUserStore();
   const router = useRouter();
 
   const handleLogout = () => {
+    localStorage.removeItem("token");
     router.push("/login");
   };
 
@@ -26,7 +29,7 @@ export const SideBar = () => {
         </Link>
         <div>
           <p className="text-xs">Welcome</p>
-          <p className="truncate">Jody Septiawan</p>
+          <p className="truncate">{user?.fullname}</p>
         </div>
         <div>
           <Link
