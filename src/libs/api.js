@@ -1,7 +1,7 @@
 const { default: axios } = require("axios");
 
 export const api = axios.create({
-  baseURL: "http://localhost:5001/api",
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api`,
 });
 
 export const setAuthToken = (token) => {
